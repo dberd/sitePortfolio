@@ -12,6 +12,7 @@ class Portfolio(models.Model):
     skills = models.TextField(default='')
     extracurricular_activities = models.TextField(default='')
     documents = models.FileField(upload_to='documents/', blank=True, null=True)
+    avatar = models.ImageField(upload_to='avatars/', blank=True, null=True)  # Добавлено поле
 
     def __str__(self):
         return f'{self.user.username} Portfolio {self.id}'

@@ -16,8 +16,20 @@ class PortfolioForm(forms.ModelForm):
         model = Portfolio
         fields = [
             'title', 'full_name', 'about_me', 'course_work', 'conferences',
-            'practices', 'skills', 'extracurricular_activities', 'documents'
+            'practices', 'skills', 'extracurricular_activities', 'documents', 'avatar'
         ]
+        labels = {
+            'title': 'Название портфолио',
+            'full_name': 'ФИО',
+            'about_me': 'О себе',
+            'course_work': 'Выполнение курсовой и дипломной работ',
+            'conferences': 'Участие в научно-практических студенческих конференциях',
+            'practices': 'Опыт прохождения практик',
+            'skills': 'Уровень профессиональных умений',
+            'extracurricular_activities': 'Участие во внеучебной деятельности',
+            'documents': 'Загрузить документы',
+            'avatar': 'Аватар',
+        }
         widgets = {
             'title': forms.TextInput(attrs={'class': 'form-control'}),
             'full_name': forms.TextInput(attrs={'class': 'form-control'}),
@@ -27,4 +39,5 @@ class PortfolioForm(forms.ModelForm):
             'practices': forms.Textarea(attrs={'class': 'form-control'}),
             'skills': forms.Textarea(attrs={'class': 'form-control'}),
             'extracurricular_activities': forms.Textarea(attrs={'class': 'form-control'}),
+            'documents': forms.ClearableFileInput(attrs={'class': 'form-control'}),
         }

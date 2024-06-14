@@ -1,11 +1,11 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <title>Электронное Портфолио</title>
+    <title>Создание Портфолио</title>
     <style>
         .portfolio-section {
             margin-bottom: 30px;
@@ -19,6 +19,30 @@
         .form-group {
             margin-bottom: 20px;
         }
+        .avatar-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        .avatar {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        .save-button {
+            margin-bottom: 20px;
+        }
+        .navbar-brand {
+            padding-left: 20px;
+        }
+        .footer {
+            background-color: #343a40;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            margin-top: 40px;
+        }
     </style>
 </head>
 <body>
@@ -30,88 +54,79 @@
                     <a class="nav-link" href="{% url 'portfolio' %}">Портфолио</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link" href="{% url 'profile' %}">Профиль</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="{% url 'logout' %}">Выйти</a>
                 </li>
             </ul>
         </div>
     </nav>
     <div class="container mt-5">
-        <h2 class="text-center">Ваше Портфолио</h2>
+        <div class="avatar-container">
+            <img src="{% static 'portfolio/images/photo_1.jpg' %}" alt="Аватар" class="avatar">
+        </div>
+        <h2 class="text-center">Создать Портфолио</h2>
         <form method="post" enctype="multipart/form-data">
             {% csrf_token %}
             <div class="portfolio-section">
-                <h3>Название портфолио</h3>
                 <div class="form-group">
-                    <label for="title">Название</label>
+                    <label for="id_title">Название портфолио:</label>
                     {{ form.title }}
                 </div>
             </div>
             <div class="portfolio-section">
-                <h3>ФИО</h3>
                 <div class="form-group">
-                    <label for="full_name">ФИО</label>
+                    <label for="id_full_name">ФИО:</label>
                     {{ form.full_name }}
                 </div>
             </div>
             <div class="portfolio-section">
-                <h3>О себе</h3>
                 <div class="form-group">
-                    <label for="about_me">О себе</label>
+                    <label for="id_about_me">О себе:</label>
                     {{ form.about_me }}
                 </div>
             </div>
             <div class="portfolio-section">
                 <h3>Учебная деятельность</h3>
                 <div class="form-group">
-                    <label for="course_work">Выполнение курсовой и дипломной работ</label>
+                    <label for="id_course_work">Выполнение курсовой и дипломной работ:</label>
                     {{ form.course_work }}
                 </div>
                 <div class="form-group">
-                    <label for="conferences">Участие в научно-практических студенческих конференциях</label>
+                    <label for="id_conferences">Участие в научно-практических студенческих конференциях:</label>
                     {{ form.conferences }}
                 </div>
                 <div class="form-group">
-                    <label for="practices">Опыт прохождения практик</label>
+                    <label for="id_practices">Опыт прохождения практик:</label>
                     {{ form.practices }}
                 </div>
             </div>
             <div class="portfolio-section">
-                <h3>Уровень профессиональных умений</h3>
                 <div class="form-group">
-                    <label for="skills">Уровень профессиональных умений</label>
+                    <label for="id_skills">Уровень профессиональных умений:</label>
                     {{ form.skills }}
                 </div>
             </div>
             <div class="portfolio-section">
-                <h3>Участие во внеучебной деятельности</h3>
                 <div class="form-group">
-                    <label for="extracurricular_activities">Участие во внеучебной деятельности</label>
+                    <label for="id_extracurricular_activities">Участие во внеучебной деятельности:</label>
                     {{ form.extracurricular_activities }}
                 </div>
             </div>
             <div class="portfolio-section">
-                <h3>Загрузка документов</h3>
                 <div class="form-group">
-                    <label for="documents">Загрузить документы</label>
+                    <label for="documents">Загрузить документы:</label>
                     <input type="file" class="form-control" id="documents" name="documents">
                 </div>
             </div>
-            <div class="text-center">
+            <div class="text-center save-button">
                 <button type="submit" class="btn btn-primary">Сохранить</button>
             </div>
         </form>
-        <div class="portfolio-section mt-5">
-            <h3>Список ваших портфолио</h3>
-            <ul class="list-group">
-                {% for portfolio in portfolios %}
-                    <li class="list-group-item">
-                        <a href="{% url 'portfolio_detail' portfolio.user.username portfolio.id %}">
-                            {{ portfolio.title }}
-                        </a>
-                    </li>
-                {% endfor %}
-            </ul>
-        </div>
     </div>
+    <footer class="footer">
+        <p>Проект для МИСиС. Данный проект предназначен для создания и управления электронными портфолио студентов.</p>
+    </footer>
 </body>
 </html>

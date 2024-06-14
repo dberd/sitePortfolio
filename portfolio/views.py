@@ -40,6 +40,11 @@ def portfolio_view(request):
     return render(request, 'portfolio/portfolio.html', {'form': form, 'portfolios': portfolios})
 
 @login_required
+def profile_view(request):
+    portfolios = Portfolio.objects.filter(user=request.user)
+    return render(request, 'portfolio/profile.html', {'portfolios': portfolios})
+
+@login_required
 def portfolio_detail_view(request, username, portfolio_id):
     user = get_object_or_404(User, username=username)
     portfolio = get_object_or_404(Portfolio, user=user, id=portfolio_id)
