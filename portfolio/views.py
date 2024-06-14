@@ -1,6 +1,7 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 from .forms import LoginForm, PortfolioForm
 from .models import Portfolio
 
@@ -26,12 +27,20 @@ def index(request):
 
 @login_required
 def portfolio_view(request):
-    portfolio, created = Portfolio.objects.get_or_create(user=request.user)
     if request.method == 'POST':
-        form = PortfolioForm(request.POST, request.FILES, instance=portfolio)
+        form = PortfolioForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
+            portfolio = form.save(commit=False)
+            portfolio.user = request.user
+            portfolio.save()
             return redirect('portfolio')
     else:
-        form = PortfolioForm(instance=portfolio)
-    return render(request, 'portfolio/portfolio.html', {'form': form})
+        form = PortfolioForm()
+    portfolios = Portfolio.objects.filter(user=request.user)
+    return render(request, 'portfolio/portfolio.html', {'form': form, 'portfolios': portfolios})
+
+@login_required
+def portfolio_detail_view(request, username, portfolio_id):
+    user = get_object_or_404(User, username=username)
+    portfolio = get_object_or_404(Portfolio, user=user, id=portfolio_id)
+    return render(request, 'portfolio/portfolio_detail.html', {'portfolio': portfolio})

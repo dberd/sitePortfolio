@@ -78,6 +78,18 @@
                 <button type="submit" class="btn btn-primary">Сохранить</button>
             </div>
         </form>
+        <div class="portfolio-section mt-5">
+            <h3>Список ваших портфолио</h3>
+            <ul class="list-group">
+                {% for portfolio in portfolios %}
+                    <li class="list-group-item">
+                        <a href="{% url 'portfolio_detail' portfolio.user.username portfolio.id %}">
+                            Портфолио {{ portfolio.id }} - {{ portfolio.created_at }}
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
     </div>
 </body>
 </html>
