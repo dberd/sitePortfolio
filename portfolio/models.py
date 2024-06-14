@@ -3,10 +3,14 @@ from django.contrib.auth.models import User
 
 class Portfolio(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    bio = models.TextField(blank=True, null=True)
-    academic_achievements = models.TextField(blank=True, null=True)
-    projects = models.TextField(blank=True, null=True)
-    work_experience = models.TextField(blank=True, null=True)
+    title = models.CharField(max_length=200, default='')
+    full_name = models.CharField(max_length=200, default='')
+    about_me = models.TextField(default='')
+    course_work = models.TextField(default='')
+    conferences = models.TextField(default='')
+    practices = models.TextField(default='')
+    skills = models.TextField(default='')
+    extracurricular_activities = models.TextField(default='')
     documents = models.FileField(upload_to='documents/', blank=True, null=True)
 
     def __str__(self):

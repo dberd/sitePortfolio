@@ -14,10 +14,17 @@ class LoginForm(forms.Form):
 class PortfolioForm(forms.ModelForm):
     class Meta:
         model = Portfolio
-        fields = ['bio', 'academic_achievements', 'projects', 'work_experience', 'documents']
+        fields = [
+            'title', 'full_name', 'about_me', 'course_work', 'conferences',
+            'practices', 'skills', 'extracurricular_activities', 'documents'
+        ]
         widgets = {
-            'bio': forms.Textarea(attrs={'class': 'form-control'}),
-            'academic_achievements': forms.Textarea(attrs={'class': 'form-control'}),
-            'projects': forms.Textarea(attrs={'class': 'form-control'}),
-            'work_experience': forms.Textarea(attrs={'class': 'form-control'}),
+            'title': forms.TextInput(attrs={'class': 'form-control'}),
+            'full_name': forms.TextInput(attrs={'class': 'form-control'}),
+            'about_me': forms.Textarea(attrs={'class': 'form-control'}),
+            'course_work': forms.Textarea(attrs={'class': 'form-control'}),
+            'conferences': forms.Textarea(attrs={'class': 'form-control'}),
+            'practices': forms.Textarea(attrs={'class': 'form-control'}),
+            'skills': forms.Textarea(attrs={'class': 'form-control'}),
+            'extracurricular_activities': forms.Textarea(attrs={'class': 'form-control'}),
         }

@@ -35,20 +35,33 @@
     <div class="container mt-5">
         <h2 class="text-center">Портфолио {{ portfolio.user.username }}</h2>
         <div class="portfolio-section">
-            <h3>Личная информация</h3>
-            <p>{{ portfolio.bio }}</p>
+            <h3>Название портфолио</h3>
+            <p>{{ portfolio.title }}</p>
         </div>
         <div class="portfolio-section">
-            <h3>Академические достижения</h3>
-            <p>{{ portfolio.academic_achievements }}</p>
+            <h3>ФИО</h3>
+            <p>{{ portfolio.full_name }}</p>
         </div>
         <div class="portfolio-section">
-            <h3>Проекты</h3>
-            <p>{{ portfolio.projects }}</p>
+            <h3>О себе</h3>
+            <p>{{ portfolio.about_me }}</p>
         </div>
         <div class="portfolio-section">
-            <h3>Опыт работы</h3>
-            <p>{{ portfolio.work_experience }}</p>
+            <h3>Учебная деятельность</h3>
+            <h4>Выполнение курсовой и дипломной работ</h4>
+            <p>{{ portfolio.course_work }}</p>
+            <h4>Участие в научно-практических студенческих конференциях</h4>
+            <p>{{ portfolio.conferences }}</p>
+            <h4>Опыт прохождения практик</h4>
+            <p>{{ portfolio.practices }}</p>
+        </div>
+        <div class="portfolio-section">
+            <h3>Уровень профессиональных умений</h3>
+            <p>{{ portfolio.skills }}</p>
+        </div>
+        <div class="portfolio-section">
+            <h3>Участие во внеучебной деятельности</h3>
+            <p>{{ portfolio.extracurricular_activities }}</p>
         </div>
         <div class="portfolio-section">
             <h3>Документы</h3>

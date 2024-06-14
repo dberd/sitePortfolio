@@ -40,35 +40,57 @@
         <form method="post" enctype="multipart/form-data">
             {% csrf_token %}
             <div class="portfolio-section">
-                <h3>Личная информация</h3>
+                <h3>Название портфолио</h3>
                 <div class="form-group">
-                    <label for="bio">Биография</label>
-                    {{ form.bio }}
+                    <label for="title">Название</label>
+                    {{ form.title }}
                 </div>
             </div>
             <div class="portfolio-section">
-                <h3>Академические достижения</h3>
+                <h3>ФИО</h3>
                 <div class="form-group">
-                    <label for="academic_achievements">Академические достижения</label>
-                    {{ form.academic_achievements }}
+                    <label for="full_name">ФИО</label>
+                    {{ form.full_name }}
                 </div>
             </div>
             <div class="portfolio-section">
-                <h3>Проекты</h3>
+                <h3>О себе</h3>
                 <div class="form-group">
-                    <label for="projects">Проекты</label>
-                    {{ form.projects }}
+                    <label for="about_me">О себе</label>
+                    {{ form.about_me }}
                 </div>
             </div>
             <div class="portfolio-section">
-                <h3>Опыт работы</h3>
+                <h3>Учебная деятельность</h3>
                 <div class="form-group">
-                    <label for="work_experience">Опыт работы</label>
-                    {{ form.work_experience }}
+                    <label for="course_work">Выполнение курсовой и дипломной работ</label>
+                    {{ form.course_work }}
+                </div>
+                <div class="form-group">
+                    <label for="conferences">Участие в научно-практических студенческих конференциях</label>
+                    {{ form.conferences }}
+                </div>
+                <div class="form-group">
+                    <label for="practices">Опыт прохождения практик</label>
+                    {{ form.practices }}
                 </div>
             </div>
             <div class="portfolio-section">
-                <h3>Документы</h3>
+                <h3>Уровень профессиональных умений</h3>
+                <div class="form-group">
+                    <label for="skills">Уровень профессиональных умений</label>
+                    {{ form.skills }}
+                </div>
+            </div>
+            <div class="portfolio-section">
+                <h3>Участие во внеучебной деятельности</h3>
+                <div class="form-group">
+                    <label for="extracurricular_activities">Участие во внеучебной деятельности</label>
+                    {{ form.extracurricular_activities }}
+                </div>
+            </div>
+            <div class="portfolio-section">
+                <h3>Загрузка документов</h3>
                 <div class="form-group">
                     <label for="documents">Загрузить документы</label>
                     <input type="file" class="form-control" id="documents" name="documents">
@@ -84,7 +106,7 @@
                 {% for portfolio in portfolios %}
                     <li class="list-group-item">
                         <a href="{% url 'portfolio_detail' portfolio.user.username portfolio.id %}">
-                            Портфолио {{ portfolio.id }} - {{ portfolio.created_at }}
+                            {{ portfolio.title }}
                         </a>
                     </li>
                 {% endfor %}
